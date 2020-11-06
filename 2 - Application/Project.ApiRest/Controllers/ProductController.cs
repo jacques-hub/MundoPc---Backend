@@ -28,10 +28,25 @@
             return Ok(product);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(long id)
+        {
+            var porduct = await _productRepository.GetById(id);
+            if (porduct != null)
+            {
+                return Ok(porduct);
+            }
+            else
+            {
+                return Ok("El Producto que busca no existe");
+            }
+
+        }
+
+
         // GET: api/Product/5
         //[AllowAnonymous]
         [HttpGet("withCode")]
-        //[HttpPost("searchProduct")]
         public async Task<IActionResult> SearchProduct(string code)
         {
             var products = await _productRepository.GetByCode(code);
