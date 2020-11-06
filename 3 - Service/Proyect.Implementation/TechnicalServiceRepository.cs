@@ -97,7 +97,9 @@
                 await _technicalServiceRepository.GetAll(null, null, false);
 
             var x = technicalServiceAll.FirstOrDefault(t => t.SerialNumber == code);
-            if (x == null) throw new Exception("no se encontró ningún Reporte con el código ingresado");
+            if (x == null) return null; 
+                
+                //throw new Exception("no se encontró ningún Reporte con el código ingresado");
 
             return new TechnicalServiceDto()
             {
