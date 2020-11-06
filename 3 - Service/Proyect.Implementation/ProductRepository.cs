@@ -124,8 +124,8 @@
         public async Task<ProductDto> GetById(long Id)
         {
             var x = await _productRepository.GetById(Id);
-            if (x == null)
-                throw new Exception("Ningun producto tiene el id que busca");
+            //if (x == null)
+              //  throw new Exception("Ningun producto tiene el id que busca");
             return new ProductDto()
             {
                 Id = x.Id,
@@ -138,7 +138,7 @@
                 Stock = x.Stock,
                 BrandId = x.BrandId,
                 BrandDescription = _brandRepository.GetById(x.BrandId).Result.Description,
-                CategoryId = x.Category.Id,
+                CategoryId = x.CategoryId,
                 CategoryDescription = _categoryRepository.GetById(x.CategoryId).Result.Description
             };
         }
