@@ -78,7 +78,7 @@ namespace Project.ApiRest.Controllers
             if (_productRepair != null)
             {
                 await _productRepairRepository.Update(productRepair);
-                return Ok(_productRepair);
+                return Ok(productRepair);
             }
             else
             {

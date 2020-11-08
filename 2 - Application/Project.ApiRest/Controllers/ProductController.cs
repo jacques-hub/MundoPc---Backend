@@ -84,8 +84,8 @@
 
             if (_product != null)
             {
-                await _productRepository.Update(_product);
-                return Ok(_product);
+                await _productRepository.Update(product);
+                return Ok(product);
             }
             else
             {

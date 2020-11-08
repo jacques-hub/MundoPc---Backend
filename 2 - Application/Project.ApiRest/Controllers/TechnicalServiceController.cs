@@ -89,8 +89,8 @@ namespace Project.ApiRest.Controllers
 
             if (_technicalService != null)
             {
-                await _technicalServiceRepository.Update(_technicalService);
-                return Ok(_technicalService);
+                await _technicalServiceRepository.Update(technicalService);
+                return Ok(technicalService);
             }
             else
             {

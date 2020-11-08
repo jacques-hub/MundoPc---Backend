@@ -74,8 +74,8 @@
 
             if (_user != null)
             {
-                await _userRepository.Update(_user);
-                return Ok(_user);
+                await _userRepository.Update(user);
+                return Ok(user);
             }
             else
             {

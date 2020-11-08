@@ -134,6 +134,8 @@
                 Name = x.Name,
                 Description = x.Description,
                 IsDeleted = x.IsDeleted,
+                CostPrice = x.CostPrice,
+                Aliquot = x.Aliquot,
                 Price = x.Aliquot * x.CostPrice,
                 Stock = x.Stock,
                 BrandId = x.BrandId,
