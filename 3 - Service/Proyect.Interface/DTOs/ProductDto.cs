@@ -7,7 +7,7 @@ namespace Proyect.Interface.DTOs
 {
     public class ProductDto: BaseDto
     {
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         public long CategoryId { get; set; }
         public long BrandId { get; set; }
         public string BrandDescription { get; set; }
