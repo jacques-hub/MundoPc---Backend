@@ -19,7 +19,7 @@
                 .IsRequired();
 
             builder.Property(x => x.Description)
-                .HasMaxLength(500)
+                .HasMaxLength(9999999)
                 .IsRequired();
 
             builder.Property(x => x.CostPrice)

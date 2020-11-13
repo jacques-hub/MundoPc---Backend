@@ -69,7 +69,7 @@ namespace Project.ApiRest.Controllers
                 return BadRequest();
 
             var _technicalService = _technicalServiceRepository.GetAll()
-                .Result.FirstOrDefault(x => x.Total!= -1);//aca no se como hacer
+                .Result.FirstOrDefault(x => x.SerialNumber == technicalService.SerialNumber);//aca no se como hacer
             if (_technicalService != null)
             {
                 ModelState.AddModelError("DateReceived", $"La Producto para Reparacion que ingreso el {_technicalService.DateReceived.ToShortDateString()}\n todavia no fué retirado");

@@ -32,6 +32,9 @@ namespace Project.Inyection
             servicios.AddTransient<ITechnicalServiceRepository, TechnicalServiceRepository>();
             servicios.AddTransient<IRepository<TechnicalService>, Repository<TechnicalService>>();
 
+            servicios.AddTransient<IMessengerRepository, MessengerRepository>();
+            servicios.AddTransient<IRepository<Messenger>, Repository<Messenger>>();
+
         }
     }
 }

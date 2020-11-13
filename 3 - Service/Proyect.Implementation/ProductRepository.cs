@@ -51,8 +51,8 @@
                     Aliquot = dto.Aliquot,
                     Stock = dto.Stock,
                     IsDeleted = false,
-                    BrandId = _brand.Id,
-                    CategoryId = _category.Id
+                    BrandId = dto.BrandId,
+                    CategoryId = dto.CategoryId
                 };
                 await _productRepository.Create(newProduct);
             }
@@ -116,9 +116,9 @@
                 BrandDescription = _brandRepository.GetById(x.BrandId).Result.Description,
                 CategoryId = x.CategoryId,
                 CategoryDescription = _categoryRepository.GetById(x.CategoryId).Result.Description
-            }).Where(y => y.IsDeleted != true &&
-                    y.Code.Contains(code) || y.Name.Contains(code) ||
-                    y.Description.Contains(code));
+            }).Where(y => y.Code.ToUpper().Contains(code.ToUpper()) 
+                    || y.Name.ToUpper().Contains(code.ToUpper())
+                    && !y.IsDeleted );
         }
 
         public async Task<ProductDto> GetById(long Id)

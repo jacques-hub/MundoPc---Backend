@@ -92,7 +92,7 @@
             modelBuilder.ApplyConfiguration<Category>(new CategoryMetaData());
             modelBuilder.ApplyConfiguration<ProductRepair>(new ProductRepairMetaData());
             modelBuilder.ApplyConfiguration<TechnicalService>(new TechnicalServiceMetaData());
-
+            modelBuilder.ApplyConfiguration<Messenger>(new MessengerMetaData());
 
             //=============================================================//
 
@@ -104,6 +104,8 @@
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductRepair> ProductRepairs { get; set; }
         public DbSet<TechnicalService> TechnicalServices { get; set; }
+        public DbSet<Messenger> Messengers { get; set; }
+
 
     }
 }
