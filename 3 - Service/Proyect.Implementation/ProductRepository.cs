@@ -81,7 +81,7 @@
                 Name = x.Name,
                 Description = x.Description,
                 IsDeleted = x.IsDeleted,
-                Price = x.Aliquot * x.CostPrice,//se puede mejorar
+                Price = SalePrice(x.Aliquot, x.CostPrice),
                 Stock = x.Stock,
                 BrandId =x.BrandId,
                 BrandDescription = _brandRepository.GetById(x.BrandId).Result.Description,
@@ -110,7 +110,7 @@
                 Name = x.Name,
                 Description = x.Description,
                 IsDeleted = x.IsDeleted,
-                Price = x.Aliquot * x.CostPrice,//se puede mejorar
+                Price = SalePrice(x.Aliquot, x.CostPrice),
                 Stock = x.Stock,
                 BrandId = x.BrandId,
                 BrandDescription = _brandRepository.GetById(x.BrandId).Result.Description,
@@ -136,7 +136,7 @@
                 IsDeleted = x.IsDeleted,
                 CostPrice = x.CostPrice,
                 Aliquot = x.Aliquot,
-                Price = x.Aliquot * x.CostPrice,
+                Price = SalePrice(x.Aliquot, x.CostPrice),
                 Stock = x.Stock,
                 BrandId = x.BrandId,
                 BrandDescription = _brandRepository.GetById(x.BrandId).Result.Description,
@@ -167,6 +167,12 @@
             _p.CategoryId = dto.CategoryId;
 
             await _productRepository.Update(_p);
+        }
+
+        //--------Metodos-Privados--------------------------------------
+        private decimal SalePrice(decimal aliquot, decimal costprice)
+        {
+            return costprice * (1 + aliquot / 100);
         }
     }
 }
