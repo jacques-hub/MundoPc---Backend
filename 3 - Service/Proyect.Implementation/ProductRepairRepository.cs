@@ -78,6 +78,25 @@
             }).Where(y => y.IsDeleted != true);
         }
 
+        public async Task<ProductRepairDto> GetByCode(string code)
+        {
+            var y = await _productRepairRepository.GetAll(null, null, false);
+            var x = y.FirstOrDefault(x => x.Code == code);
+            return new ProductRepairDto()
+            {
+                Id = x.Id,
+                Description = x.Description,
+                IsDeleted = x.IsDeleted,
+                BrandId = x.BrandId,
+                BrandDescription = _brandRepository.GetById(x.BrandId).Result.Description,
+                CategoryId = x.CategoryId,
+                CategoryDescription = _categoryRepository.GetById(x.CategoryId).Result.Description,
+                Code = x.Code,
+                CostPrice = x.CostPrice,
+                SalePrice = x.SalePrice
+            };
+        }
+
         public async Task<ProductRepairDto> GetById(long UserId)
         {
             var x = await _productRepairRepository.GetById(UserId);

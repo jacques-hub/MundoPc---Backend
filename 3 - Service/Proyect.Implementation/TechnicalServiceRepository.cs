@@ -153,23 +153,11 @@
 
         public async Task Update(TechnicalServiceDto dto)
         {
-            var _user = await _userRepository.GetById(dto.UserId);
-            if (_user == null)
-                throw new Exception("El Usuario ingresado no existe");
-
-            var _productRepair = await _productRepairRepository.GetById(dto.ProductRepairId);
-            if (_productRepair == null)
-                throw new Exception("El Producto ingresado no existe");
             var _t = await _technicalServiceRepository.GetById(dto.Id);
-            _t.SerialNumber = dto.SerialNumber;
             _t.Observations = dto.Observations;
-            _t.AccessoriesReceived = dto.AccessoriesReceived;
             _t.EquipmentFailure = dto.EquipmentFailure;
-            _t.DateReceived = dto.DateReceived;
             _t.ServiceStatus = dto.ServiceStatus;
             _t.DateStatus = dto.DateStatus;
-            _t.User = _user;
-            _t.ProductRepair = _productRepair;
             _t.TotalInputs = dto.TotalInputs; //total insumos
             _t.TotalLabor = dto.TotalLabor;//mano de obra
             _t.Total = dto.Total;

@@ -46,6 +46,22 @@ namespace Project.ApiRest.Controllers
 
         }
 
+        [HttpGet("withCode")]
+        public async Task<IActionResult> GetProductRepair(string code)
+        {
+            var productRepair = await _productRepairRepository.GetByCode(code);
+            if (productRepair != null)
+            {
+                return Ok(productRepair);
+            }
+            else
+            {
+                return Ok("El Producto para Reparación no existe");
+            }
+
+        }
+
+
         // POST: api/Product
         [HttpPost]
         public async Task<IActionResult> Create(ProductRepairDto productRepair)

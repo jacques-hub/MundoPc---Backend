@@ -10,6 +10,7 @@
         Task Update(ProductRepairDto dto);
         Task Delete(ProductRepairDto dto);
         Task<ProductRepairDto> GetById(long UserId);
+        Task<ProductRepairDto> GetByCode(string code);
         Task<IEnumerable<ProductRepairDto>> GetAll();
     }
 }
