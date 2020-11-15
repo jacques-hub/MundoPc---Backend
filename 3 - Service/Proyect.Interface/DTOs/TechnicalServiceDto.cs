@@ -24,5 +24,8 @@ namespace Proyect.Interface.DTOs
         public string UserName{ get; set; }
         public long ProductRepairId { get; set; }
         public string ProductRepairDescription { get; set; }
+        public string ProductRepairCode { get; set; }
+        public long ProductRepairBrandId { get; set; }
+        public long ProductRepairCategoryId { get; set; }
     }
 }

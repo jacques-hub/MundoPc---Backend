@@ -8,7 +8,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
+    using System.Transactions;
 
     public class TechnicalServiceRepository: ITechnicalServiceRepository
     {
@@ -34,28 +36,43 @@
             if (_user == null)
                 throw new Exception("El Usuario ingresado no existe");
 
-            var _productRepair = await _productRepairRepository.GetById(dto.ProductRepairId);
-            if (_productRepair == null)
-                throw new Exception("El Producto ingresado no existe");
+            var _p = await _productRepairRepository.GetAll();
+            if (_p.FirstOrDefault(x=>x.Code == dto.ProductRepairCode) != null){
+                throw new Exception("El producto ya fue cargado");
+            }
 
+            await _productRepairRepository.Create(new ProductRepair()
+            {
+                CategoryId = dto.ProductRepairCategoryId,
+                BrandId = dto.ProductRepairBrandId,
+                Description = dto.ProductRepairDescription,
+                Code = dto.ProductRepairCode
+            });
+
+            var _prod = await _productRepairRepository.GetAll(null, null, false);
+            var prod = _prod.FirstOrDefault(x => x.Code == dto.ProductRepairCode);
+            //System.Console.WriteLine(_productId);
             var newTechnicalService = new TechnicalService()
             {
                 SerialNumber = dto.SerialNumber,
-                Observations =dto.Observations,
+                Observations = dto.Observations,
                 AccessoriesReceived = dto.AccessoriesReceived,
                 EquipmentFailure = dto.EquipmentFailure,
                 DateReceived = dto.DateReceived,
                 ServiceStatus = dto.ServiceStatus,
                 DateStatus = dto.DateStatus,
                 UserId = _user.Id,
-                ProductRepairId = _productRepair.Id,
                 TotalInputs = dto.TotalInputs, //total insumos
-                TotalLabor =dto.TotalLabor,//mano de obra
+                TotalLabor = dto.TotalLabor,//mano de obra
                 Total = dto.Total,
                 Diagnostic = dto.Diagnostic,
-                IsDeleted = false
+                IsDeleted = false,
+                ProductRepairId = prod.Id
             };
+
             await _technicalServiceRepository.Create(newTechnicalService);
+          
+            
         }
 
         public async Task Delete(TechnicalServiceDto dto)

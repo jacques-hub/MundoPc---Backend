@@ -18,12 +18,12 @@
             this.context = context;
         }
 
-        public async Task Create(T entity)
+        public async Task<int> Create(T entity)
         {
             using (var context = new DataContext())
             {
                 await context.Set<T>().AddAsync(entity);
-                await context.SaveChangesAsync();
+                return await context.SaveChangesAsync();
             }
         }
 

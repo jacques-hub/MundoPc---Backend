@@ -10,7 +10,7 @@
 
     public interface IRepository<T> where T : EntityBase
     {
-        Task Create(T entity);
+        Task<int> Create(T entity);
 
         Task Update(T entity);
 
