@@ -139,5 +139,30 @@
 
             return true;
         }
+
+        public async Task<UserDto> GetByEmail(string email)
+        {
+            User u = await Task.Run(() =>
+                 _userRepository.GetAll().Result.FirstOrDefault(x =>
+                     x.Email == email &&
+                     x.IsDeleted != true)
+             );
+
+            if (u == null)
+                return null;
+            u.Password = null;
+
+            return new UserDto()
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Password = u.Password,
+                Role = u.Role,
+                Telephone = u.Telephone,
+                IsActive = u.IsActive,
+                IsDeleted = u.IsDeleted
+            };
+        }
     }
 }

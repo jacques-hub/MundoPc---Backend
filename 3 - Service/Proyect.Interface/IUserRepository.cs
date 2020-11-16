@@ -12,7 +12,7 @@
         Task Delete(UserDto dto);
         Task<UserDto> GetById(long UserId);
         Task<IEnumerable<UserDto>> GetAll();
-
+        Task<UserDto> GetByEmail(string email);
         Task<UserDto> Authenticate(string email, string password);
         Task<bool> IsValidUser(string email, string password);
     }

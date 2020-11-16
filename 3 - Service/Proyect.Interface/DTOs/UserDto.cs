@@ -1,10 +1,7 @@
-﻿using Project.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Proyect.Interface.DTOs
+﻿namespace Proyect.Interface.DTOs
 {
+    using Project.Domain.Entities;
+
     public class UserDto: BaseDto
     {
         public string Email { get; set; }

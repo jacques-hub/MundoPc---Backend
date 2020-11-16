@@ -46,6 +46,22 @@
             return Ok(user);
         }
 
+        //get by email
+        [HttpGet("withEmail")]
+        public async Task<IActionResult> GetByEmail(string email)
+        {
+            var user = await _userRepository.GetAll(); 
+            var _user = user.FirstOrDefault(x => x.Email == email && x.IsDeleted != true);
+
+            if (_user == null)
+            {
+                ModelState.AddModelError("email", "El usuario con ese email no existe");
+                return BadRequest(ModelState);
+            }
+            await _userRepository.GetByEmail(email);
+            return Ok(user);
+        }
+
         // POST: api/Product
         //[AllowAnonymous]
         [HttpPost]

@@ -15,7 +15,7 @@
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(StringConnection.GetConnectionStringWin);
+            optionsBuilder.UseSqlServer(StringConnection.GetConnectionStringSql);
             base.OnConfiguring(optionsBuilder);
             //notraking
         }
